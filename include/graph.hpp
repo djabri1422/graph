@@ -15,6 +15,7 @@ public:
 	void search(int, int);
 	void printGraph();
 	vector retMass();
+	std::vector<int> get_Vortex();
 };
 
 
@@ -25,6 +26,11 @@ Graph::Graph() noexcept : vortex(0)
 	{
 		vortex[i] = 0;
 	}
+}
+
+std::vector<int> Graph::get_Vortex()
+{
+	return vortex;
 }
 
 vector Graph::retMass()
