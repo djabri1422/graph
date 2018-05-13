@@ -1,31 +1,76 @@
-#include <catch.hpp>
-#include <sstream>
 
-#include "matrix.hpp"
+#include <iostream>
+#include <vector>
 
-TEST_CASE("creating matrix")
+using vector = std::vector<std::vector<int>>;
+
+class Graph
 {
-    matrix_t matrix;
-    REQUIRE( matrix.rows() == 0 );
-    REQUIRE( matrix.collumns() == 0 );
+private:
+	std::vector<int> vortex; //Вершина
+	vector mass; //Матрица смежности
+
+public:
+	Graph() noexcept;
+	void get_mass(vector);
+	void search(int, int);
+	void printGraph();
+};
+
+Graph::Graph() noexcept : vortex(0)
+{
+
+	for (auto i = 0; i < vortex.size(); i++)
+	{
+		vortex[i] = 0;
+	}
 }
 
-TEST_CASE("reading matrix")
+void Graph::get_mass(vector _mass)
 {
-    std::string input{
-        "3, 3\n"
-        "1 1 1\n"
-        "2 2 2\n"
-        "3 3 3" };
-    matrix_t matrix;
-    std::istringstream istream{ input };
-    
-    REQUIRE( matrix.read( istream ) );
-    REQUIRE( matrix.rows() == 3 );
-    REQUIRE( matrix.collumns() == 3 );
-    
-    std::ostringstream ostream;
-    matrix.write( ostream );
-    
-    REQUIRE( input == ostream.str() );
+	mass = _mass;
+
+	for (unsigned int i = 0; i < mass.size(); i++)
+	{
+		for (unsigned int j = 0; j < mass.size(); j++)
+		{
+			std::cout << mass[i][j] << " "; 
+		}
+		std::cout << "\n";
+	}
+
+	auto temp = mass.size();
+	vortex.resize(temp);
 }
+
+void Graph::search(int st, int n)
+{
+	vortex[st] = 1;
+
+
+	for (int r = 0; r < n; r++)
+	{
+		if (mass[st][r] != 0 && vortex[r] == 0)
+		{
+			search(r, n);
+		}
+	}
+}
+
+
+void Graph::printGraph()
+{
+	for (unsigned int i = 0; i < mass.size(); i++)
+	{
+		std::cout << i << "\n";
+		for (unsigned int j = 0; j < mass.size(); j++)
+		{
+			if (mass[i][j] == 1 && mass[j][i] == 1)
+			{
+				std::cout << " - " << j << "  \n";
+			}
+		}
+		std::cout << "\n";
+	}
+}
+
