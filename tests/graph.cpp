@@ -14,5 +14,7 @@ TEST_CASE("init vortex")
 	{ 0, 0, 0, 0, 1, 0, 1 },
 	{ 1, 0, 0, 0, 0, 1, 0 }};	
 
-	REQUIRE( A.getMass(B) );  
+	A.getMass(B);
+	
+	REQIURE( A.size() == 7 );
 }
