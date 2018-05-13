@@ -16,5 +16,5 @@ TEST_CASE("initialz vortex")
 
 	A.getMass(B);
 	
-	REQIURE( A.retMass().size() == 7 );
+	REQUIRE( A.retMass().size() == 7 );
 }
