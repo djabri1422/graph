@@ -1,6 +1,6 @@
-
 #include <iostream>
 #include <vector>
+#include <cassert>
 
 using vector = std::vector<std::vector<int>>;
 
@@ -9,24 +9,22 @@ class Graph
 private:
 	std::vector<int> vortex; //Вершина
 	vector mass; //Матрица смежности
-
 public:
 	Graph() noexcept;
-	void get_mass(vector);
+	void getMass(vector);
 	void search(int, int);
 	void printGraph();
 };
 
 Graph::Graph() noexcept : vortex(0)
 {
-
 	for (auto i = 0; i < vortex.size(); i++)
 	{
 		vortex[i] = 0;
 	}
 }
 
-void Graph::get_mass(vector _mass)
+void Graph::getMass(vector _mass)
 {
 	mass = _mass;
 
@@ -45,8 +43,12 @@ void Graph::get_mass(vector _mass)
 
 void Graph::search(int st, int n)
 {
-	vortex[st] = 1;
+	if (st != vortex[0] && n != vortex.size())
+	{
+		throw "Hoooray! \n Please enter first elements in garph";
+	}
 
+	vortex[st] = 1;
 
 	for (int r = 0; r < n; r++)
 	{
@@ -56,7 +58,6 @@ void Graph::search(int st, int n)
 		}
 	}
 }
-
 
 void Graph::printGraph()
 {
