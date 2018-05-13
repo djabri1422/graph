@@ -14,7 +14,10 @@ public:
 	void getMass(vector);
 	void search(int, int);
 	void printGraph();
+	vector retMass();
 };
+
+
 
 Graph::Graph() noexcept : vortex(0)
 {
@@ -22,6 +25,11 @@ Graph::Graph() noexcept : vortex(0)
 	{
 		vortex[i] = 0;
 	}
+}
+
+vector Graph::retMass()
+{
+	return mass;
 }
 
 void Graph::getMass(vector _mass)
