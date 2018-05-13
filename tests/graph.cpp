@@ -2,7 +2,7 @@
 
 #include "graph.hpp"
 
-TEST_CASE("init vortex")
+TEST_CASE("initialz vortex")
 {
 	Graph A;
 	
