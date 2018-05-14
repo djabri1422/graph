@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <cassert>
 
 using vector = std::vector<std::vector<int>>;
 
@@ -15,10 +14,8 @@ public:
 	void search(int, int);
 	void printGraph();
 	vector retMass();
-	std::vector<int> get_Vortex();
+	std::vector<int> getVortex();
 };
-
-
 
 Graph::Graph() noexcept : vortex(0)
 {
